@@ -1,10 +1,10 @@
-# Backend General Funciones para crear Logs - Envio de Email
-# CRUDS con fuente de datos configurable Mongo - Postgress - MySQL - LocalFiles
-# Arquitectura Limpia con TypeScript
+# General-Backend create Logs - send Emails
+# CRUDS with datasources Mongo - Postgress - MySQL - LocalFiles
+# Clean Arquitecture with TypeScript
 
 # dev
-1. Clonar el archivo .env.template a .env
-2. Configurar las variables de entorno
+1. Duplicate file .env.template a .env
+2. Configure environment variables
 ```
 PORT=3000
 
@@ -19,8 +19,8 @@ MONGO_USER=
 MONGO_PASS=
 
 ```
-3. Ejecutar el comando ```npm install```
-4. Ejecutar ```npm run dev```
+3. Ejecute command ```npm install```
+4. Ejecute command ```npm run dev```
 
-## Configurar Gmail Key
+## Configure Gmail Key
 [Google AppPasswords](https://myaccount.google.com/u/0/apppasswords)
