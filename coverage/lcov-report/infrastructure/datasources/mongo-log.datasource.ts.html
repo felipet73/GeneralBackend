@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for data/mongo/init.ts</title>
+    <title>Code coverage report for infrastructure/datasources/mongo-log.datasource.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">data/mongo</a> init.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">infrastructure/datasources</a> mongo-log.datasource.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/24</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/24</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -84,9 +84,7 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -95,43 +93,39 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import mongoose from "mongoose";
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { LogModel } from "../../data/mongo";
+import { LogDatasource } from "../../domain/datasources/log.datasource";
+import { LogEntity, LogSeverityLevel } from "../../domain/entities/log.entity";
 &nbsp;
-interface ConnectionOptions {
-    mongoUrl:string;
-    dbName:string;
-}
 &nbsp;
-export class MongoDatabase {
+export class MongoLogDatasource implements LogDatasource {
 &nbsp;
-    static async connect( options:ConnectionOptions ){
-        const {mongoUrl, dbName} = options;
-        try {
-            await mongoose.connect(mongoUrl,{
-                dbName:dbName
-            })
-            //console.log('Mongo Connected!');
-            return true;
-        } catch (error) {
-            //console.log('Mongo Conection error');
-            throw error;
-        }
 &nbsp;
+    async saveLog(log: LogEntity): Promise&lt;void&gt; {
+        const newLog = await LogModel.create(log);
+        //await newLog.save();
+        console.log('mongo Log Created: ', newLog.id);
     }
+    async getLogs(severityLevel: LogSeverityLevel): Promise&lt;LogEntity[]&gt; {
+        const logs = await LogModel.find({
+            level: severityLevel
+        });
+        //return logs.map( mongoLog =&gt; LogEntity.fromObject(mongoLog) );
+        return logs.map( LogEntity.fromObject );
+    }
+&nbsp;
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

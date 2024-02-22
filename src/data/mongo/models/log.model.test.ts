@@ -35,6 +35,7 @@ describe('Test Logmodel',()=>{
             id: expect.any(String)
         }));
 
+        
         await LogModel.findByIdAndDelete( log.id );
 
     });

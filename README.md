@@ -1,5 +1,5 @@
 # General-Backend create Logs - send Emails
-# CRUDS with datasources Mongo (Mongoose) - Postgress (ORM Prisma) - MySQL (ODM Sequelize)- LocalFiles Text-Json 
+# CRUDS with datasources Mongo (ODM Mongoose) - Postgress (ORM Prisma) - MySQL (ODM Sequelize)- LocalFiles Text-Json 
 # Clean Arquitecture with TypeScript
 # Testing
 

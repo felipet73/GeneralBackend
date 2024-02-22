@@ -2,6 +2,7 @@ import {envs} from './envs.plugin';
 
 describe('envs.plugin.ts', ()=>{
 
+    
     test('shoud return env options',()=>{
         //console.log(envs);
         expect(envs).toEqual({
